@@ -23,11 +23,7 @@ public class Main {
      */
     public void initFrame() {
         mainFrame = new JFrame("Renju");
-        mainFrame.setMinimumSize(new Dimension(600, 600));
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-        mainFrame.setLocation((d.width - mainFrame.getWidth()) / 2, (d.height - mainFrame.getHeight()) / 2);
     }
 
     /**
@@ -61,6 +57,10 @@ public class Main {
      * Shows main frame
      */
     public void show() {
+        mainFrame.pack();
+        mainFrame.setResizable(false);
+        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+        mainFrame.setLocation((d.width - mainFrame.getWidth()) / 2, (d.height - mainFrame.getHeight()) / 2);
         mainFrame.setVisible(true);
     }
 

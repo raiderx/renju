@@ -13,8 +13,10 @@ public class RenjuComponent extends JComponent {
 
     private RenjuModel renjuModel;
 
-    private int xFieldOffset = 18;
-    private int yFieldOffset = 18;
+    private static final int minColumnWidth = 30;
+    private static final int minRowHeight = 30;
+    private static final int xFieldOffset = 18;
+    private static final int yFieldOffset = 18;
 
     public RenjuComponent() {
         this(new DefaultRenjuModel(15, 15));
@@ -30,6 +32,9 @@ public class RenjuComponent extends JComponent {
                 RenjuComponent.this.makeNextStep(row, column);
             }
         });
+        this.setMinimumSize(new Dimension(
+                xFieldOffset + minColumnWidth * this.renjuModel.getNumberOfColumns(),
+                yFieldOffset + minRowHeight * this.renjuModel.getNumberOfRows()));
     }
 
     @Override
