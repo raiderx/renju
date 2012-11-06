@@ -70,29 +70,28 @@ public class DefaultRenjuModel implements RenjuModel {
             cx += dx;
             cy += dy;
         }
+        return count;
+    }
+
+    public int checkLine(int row, int column, int dx, int dy, int value) {
+        int count = checkDst(row, column, dx, dy, value);
         dx = -dx;
         dy = -dy;
-        cx = column + dx;
-        cy = row + dy;
-        while (cx >= 0 && cx < numberOfColumns && cy >= 0 && cy < numberOfRows && table[cy][cx] == value) {
-            ++count;
-            cx += dx;
-            cy += dy;
-        }
+        count += checkDst(row + dy, column + dx, dx, dy, value);
         return count;
     }
 
     public void checkTable(int row, int column, int value) {
-        if (checkDst(row, column, 1, 0, value) >= 5) {
+        if (checkLine(row, column, 1, 0, value) >= 5) {
             System.out.println("X You win");
         }
-        if (checkDst(row, column, 0, 1, value) >= 5) {
+        if (checkLine(row, column, 0, 1, value) >= 5) {
             System.out.println("Y You win");
         }
-        if (checkDst(row, column, 1, 1, value) >= 5) {
+        if (checkLine(row, column, 1, 1, value) >= 5) {
             System.out.println("A You win");
         }
-        if (checkDst(row, column, 1, -1, value) >= 5) {
+        if (checkLine(row, column, 1, -1, value) >= 5) {
             System.out.println("B You win");
         }
     }
