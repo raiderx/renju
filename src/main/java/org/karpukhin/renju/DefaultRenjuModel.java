@@ -63,12 +63,11 @@ public class DefaultRenjuModel implements RenjuModel {
     }
 
     public int checkDst(int row, int column, int dx, int dy, int value) {
-        int cx = column, cy = row;
         int count = 0;
-        while (cx >= 0 && cx < numberOfColumns && cy >= 0 && cy < numberOfRows && table[cy][cx] == value) {
+        while (column >= 0 && column < numberOfColumns && row >= 0 && row < numberOfRows && table[row][column] == value) {
             ++count;
-            cx += dx;
-            cy += dy;
+            column += dx;
+            row += dy;
         }
         return count;
     }
