@@ -9,9 +9,10 @@ public class DefaultRenjuModel implements RenjuModel {
     public static final int DEFAULT_NUMBER_OF_ROWS = 5;
     public static final int DEFAULT_NUMBER_OF_COLUMNS = 5;
 
-    private int numberOfRows;
-    private int numberOfColumns;
-    private int nextValue = 1;
+    private final int numberOfStones = 5;
+    private final int numberOfRows;
+    private final int numberOfColumns;
+    private int nextValue = BLACK;
 
     private int table[][];
 
@@ -51,13 +52,13 @@ public class DefaultRenjuModel implements RenjuModel {
 
     @Override
     public void makeNextStep(int row, int column) {
-        if (table[row][column] != 1 && table[row][column] != 2) {
+        if (table[row][column] != BLACK && table[row][column] != WHITE) {
             table[row][column] = nextValue;
             checkTable(row, column, nextValue);
-            if (nextValue == 1) {
-                nextValue = 2;
+            if (nextValue == BLACK) {
+                nextValue = WHITE;
             } else {
-                nextValue = 1;
+                nextValue = BLACK;
             }
         }
     }
@@ -81,16 +82,16 @@ public class DefaultRenjuModel implements RenjuModel {
     }
 
     public void checkTable(int row, int column, int value) {
-        if (checkLine(row, column, 1, 0, value) >= 5) {
+        if (checkLine(row, column, 1, 0, value) >= numberOfStones) {
             System.out.println("X You win");
         }
-        if (checkLine(row, column, 0, 1, value) >= 5) {
+        if (checkLine(row, column, 0, 1, value) >= numberOfStones) {
             System.out.println("Y You win");
         }
-        if (checkLine(row, column, 1, 1, value) >= 5) {
+        if (checkLine(row, column, 1, 1, value) >= numberOfStones) {
             System.out.println("A You win");
         }
-        if (checkLine(row, column, 1, -1, value) >= 5) {
+        if (checkLine(row, column, 1, -1, value) >= numberOfStones) {
             System.out.println("B You win");
         }
     }

@@ -6,6 +6,10 @@ package org.karpukhin.renju;
  */
 public interface RenjuModel {
 
+    int EMPTY = 0;
+    int BLACK = 1;
+    int WHITE = 2;
+
     int getNumberOfRows();
 
     int getNumberOfColumns();

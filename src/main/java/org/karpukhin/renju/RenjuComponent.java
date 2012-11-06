@@ -69,12 +69,12 @@ public class RenjuComponent extends JComponent {
         int ovalHeight = (int)(rowHeight - 4);
         for (int i = 0; i < renjuModel.getNumberOfRows(); ++i) {
             for (int j = 0; j < renjuModel.getNumberOfColumns(); ++j) {
-                if (renjuModel.getValueAt(i, j) == 1) {
+                if (renjuModel.getValueAt(i, j) == RenjuModel.WHITE) {
                     g.setColor(Color.WHITE);
                     g.fillOval(xFieldOffset + (int) (j * columnWidth) + 2, (int) (i * rowHeight) + 2, ovalWidth, ovalHeight);
                     g.setColor(Color.BLACK);
                     g.drawOval(xFieldOffset + (int) (j * columnWidth) + 2, (int) (i * rowHeight) + 2, ovalWidth, ovalHeight);
-                } else if (renjuModel.getValueAt(i, j) == 2) {
+                } else if (renjuModel.getValueAt(i, j) == RenjuModel.BLACK) {
                     g.setColor(Color.BLACK);
                     g.fillOval(xFieldOffset + (int) (j * columnWidth) + 2, (int) (i * rowHeight) + 2, ovalWidth, ovalHeight);
                 }
